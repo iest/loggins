@@ -10,11 +10,13 @@
   box-sizing: border-box;
 }
 
-.root {
+body {
   background: var(--color-white-dark);
   font: 1.125em/1.5 var(--font-brandon);
   color: var(--color-text);
 }
+
+.root {}
 
 .container {
   margin: 2em auto 0;
@@ -184,18 +186,17 @@
   display: block;
   position: relative;
   top: 0;
-  height: 100%;
   width: 100%;
 }
 .animator > div,
 .animator > section {
-  position: absolute;
   width: 100%;
   left: 0;
   top: 0;
 }
 
 :global .transLeft-enter {
+  position: absolute;
   transition: all 200ms var(--easeoutcubic);
   transform: translateX(2em);
   opacity: 0;
@@ -206,6 +207,7 @@
   opacity: 1;
 }
 :global .transLeft-leave {
+  position: absolute;
   transition: all 200ms var(--easeoutcubic);
 }
 :global .transLeft-leave-active {
@@ -214,6 +216,7 @@
 }
 
 :global .transRight-enter {
+  position: absolute;
   transition: all 200ms var(--easeoutcubic);
   transform: translateX(-2em);
   opacity: 0;
@@ -224,6 +227,7 @@
   opacity: 1;
 }
 :global .transRight-leave {
+  position: absolute;
   transition: all 200ms var(--easeoutcubic);
 }
 :global .transRight-leave-active {

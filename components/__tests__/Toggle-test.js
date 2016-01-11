@@ -1,8 +1,8 @@
-import React, {findDOMNode} from 'react';
+import React, { findDOMNode } from 'react';
 import {
   renderIntoDocument,
   Simulate,
-  findRenderedDOMComponentWithClass
+  findRenderedDOMComponentWithClass,
 } from 'react/lib/ReactTestUtils';
 
 import Toggle from '../Toggle/Toggle.js';

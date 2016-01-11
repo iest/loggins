@@ -1,5 +1,5 @@
-import React, {findDOMNode} from 'react';
-import {renderIntoDocument, Simulate} from 'react/lib/ReactTestUtils';
+import React, { findDOMNode } from 'react';
+import { renderIntoDocument, Simulate } from 'react/lib/ReactTestUtils';
 
 import Btn from '../Btn/Btn.js';
 import classNames from '../Btn/Btn.css';
@@ -41,7 +41,7 @@ describe('Btn', () => {
   });
 
   it('Correctly applies the className for the variant', () => {
-    ['cta', 'hollow', 'clean'].forEach(variant => {
+    ['hollow', 'clean'].forEach(variant => {
       const node = findDOMNode(renderIntoDocument(
         <Btn variant={variant}/>
       ));

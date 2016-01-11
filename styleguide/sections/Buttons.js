@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 import BtnContainer from 'components/BtnContainer/BtnContainer';
 import Section from '../components/Section';
@@ -28,11 +28,17 @@ export default class BtnSection extends Component {
 
         <Btn className={[m.mbs, m.mrs].join(' ')} variant="hollow">Hollow</Btn>
         <Btn className={[m.mbs, m.mrs].join(' ')} type="secondary" variant="hollow">Secondary</Btn>
+        <Btn className={[m.mbs, m.mrs].join(' ')} type="white" variant="hollow">white</Btn>
 
         <h4>Clean</h4>
 
         <Btn className={[m.mbs, m.mrs].join(' ')} variant="clean">Clean</Btn>
         <Btn className={[m.mbs, m.mrs].join(' ')} type="primary" variant="clean">Primary</Btn>
+
+        <h3>CTAs</h3>
+        <Btn cta className={[m.mbs, m.mrs].join(' ')} type="primary">Primary</Btn>
+        <Btn cta className={[m.mbs, m.mrs].join(' ')} variant="hollow">Hollow</Btn>
+        <Btn cta className={[m.mbs, m.mrs].join(' ')} variant="clean">Clean</Btn>
 
         <h3>With icon(s)</h3>
 

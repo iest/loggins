@@ -1,6 +1,6 @@
 /* eslint  no-alert: 0*/
 
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 import Section from '../components/Section';
 
@@ -38,6 +38,8 @@ export default class FormSection extends Component {
     this.handleSlide = this.handleSlide.bind(this);
     this.handleCopy = this.handleCopy.bind(this);
     this.handleDate = this.handleDate.bind(this);
+    this.focus = this.focus.bind(this);
+    this.blur = this.blur.bind(this);
 
     this.state = {
       emails: [],
@@ -64,8 +66,7 @@ export default class FormSection extends Component {
     });
   }
 
-  handleTextChange(e) {
-    const val = e.target.value;
+  handleTextChange(val) {
     this.setState({
       text: val,
       error: val.length > 5 ? 'Yep, you broke it' : '',
@@ -74,7 +75,7 @@ export default class FormSection extends Component {
   }
 
   handleEmailChange(emails) {
-    this.setState({emails: emails});
+    this.setState({ emails });
   }
 
   handleCopy() {
@@ -82,15 +83,15 @@ export default class FormSection extends Component {
   }
 
   likeChanged(didLike) {
-    this.setState({liked: didLike});
+    this.setState({ liked: didLike });
   }
 
   handleCheckbox(val) {
-    this.setState({checkbox: val});
+    this.setState({ checkbox: val });
   }
 
   handleToggle() {
-    this.setState({toggleVal: !this.state.toggleVal});
+    this.setState({ toggleVal: !this.state.toggleVal });
   }
 
   handleRadio(val) {
@@ -106,28 +107,35 @@ export default class FormSection extends Component {
   }
 
   handleSlide(slideVal) {
-    this.setState({slideVal});
+    this.setState({ slideVal });
   }
 
   handleCreditCard(e) {
-    const {value} = e.target;
+    const { value } = e.target;
     this.setState({
       creditCard: value,
     });
   }
 
   handleExpiryDate(e) {
-    const {value} = e.target;
+    const { value } = e.target;
     this.setState({
       expiryDate: value,
     });
   }
 
   handleCVC(e) {
-    const {value} = e.target;
+    const { value } = e.target;
     this.setState({
       cvc: value,
     });
+  }
+
+  focus() {
+    this.refs.focusable.focus();
+  }
+  blur() {
+    this.refs.focusable.blur();
   }
 
   render() {
@@ -137,7 +145,16 @@ export default class FormSection extends Component {
         <h3>FieldGroup &amp; Field</h3>
         <FieldGroup title="Example field group">
           <Field>
-            <FormInput borderless type="text" onChange={this.handleTextChange} value={this.state.text} label="First name" placeholder="e.g. Bat"/>
+            <FormInput
+              borderless
+              required
+              type="text"
+              onChange={this.handleTextChange}
+              value={this.state.text}
+              label="First name"
+              error={this.state.error}
+              placeholder="e.g. Bat"
+            />
           </Field>
           <Field>
             <FormInput borderless type="text" onChange={this.handleTextChange} value={this.state.text} label="Second name" placeholder="e.g. Man"/>
@@ -163,19 +180,21 @@ export default class FormSection extends Component {
         <h3>Toggle</h3>
         <Toggle value={this.state.toggleVal} onChange={this.handleToggle}/>
         <br/>
-        Is mothercluckers the best chicken in the universe? <strong>{this.state.toggleVal ? 'Absolutely.' : `I don't know. Probably.`}</strong>
+        Is mothercluckers the best chicken in the universe? <strong>{this.state.toggleVal ? 'Absolutely.' : 'I don’t know. Probably.'}</strong>
 
         <h3>Radio buttons</h3>
-        <RadioGroup name="example"
-                    onChange={this.handleRadio}
-                    value={this.state.radioVal}>
+        <RadioGroup
+          name="example"
+          onChange={this.handleRadio}
+          value={this.state.radioVal}
+        >
           {radio => (
             <span>
-              {radio({value: 'Apple'})}
+              {radio({ value: 'Apple' })}
               <br/>
-              {radio({value: 'Orange'})}
+              {radio({ value: 'Orange' })}
               <br/>
-              {radio({value: 'Banana'})}
+              {radio({ value: 'Banana' })}
             </span>
           )}
         </RadioGroup>
@@ -217,14 +236,44 @@ export default class FormSection extends Component {
         <SelectableInput value="Highlight me by clicking. If you copy text, you'll be alerted" onAction={this.handleCopy}/>
 
         <h3>FormInput</h3>
-        <p>Just a cute little animating input. Gracefully handles having a value passed in as well:</p>
-        <FormInput type="text" onChange={this.handleTextChange} value={this.state.text} error={this.state.error} label="First name"/>
-        <FormInput type="text" onChange={this.handleTextChange} value={this.state.lolText} error={this.state.error} label="Upcase &amp; sorted"/>
+        <p>
+          Just a cute little animating input. Gracefully handles having a value passed in, and can be focused/blurred from outside:
+          <button onClick={this.focus}>Focus</button>
+          <button onClick={this.blur}>Blur</button>
+        </p>
+        <FormInput
+          type="text"
+          onChange={this.handleTextChange}
+          value={this.state.text}
+          error={this.state.error}
+          label="First name"
+          ref="focusable"
+        />
+        <FormInput
+          type="text"
+          placeho
+          onChange={this.handleTextChange}
+          value={this.state.lolText}
+          error={this.state.error}
+          label="Upcase &amp; sorted"
+        />
         <p>Will also show an error if it's passed in:</p>
-        <FormInput type="text" onChange={this.handleTextChange} value={this.state.text} error="Something bad happened" label="Error example"/>
+        <FormInput
+          type="text"
+          onChange={this.handleTextChange}
+          value={this.state.text}
+          error="Something bad happened" label="Error example"
+        />
 
         Has second variant where the label and placeholder are separate:
-        <FormInput placeholder="e.g. Home" type="text" onChange={this.handleTextChange} value={this.state.text} error={this.state.error} label="Name"/>
+        <FormInput
+          placeholder="e.g. Home"
+          type="text"
+          onChange={this.handleTextChange}
+          value={this.state.text}
+          error={this.state.error}
+          label="Name"
+        />
 
         <h3>FormInput... Zorro Style (Masked)</h3>
         <MaskedFormInput
@@ -233,7 +282,8 @@ export default class FormSection extends Component {
           type="text"
           onChange={this.handleCreditCard}
           value={this.state.creditCard}
-          label="Credit Card" />
+          label="Credit Card"
+        />
         <br />
         <MaskedFormInput
           pattern="11 / 1111"
@@ -241,7 +291,8 @@ export default class FormSection extends Component {
           type="text"
           onChange={this.handleExpiryDate}
           value={this.state.expiryDate}
-          label="Expiry" />
+          label="Expiry"
+        />
         <br />
         <MaskedFormInput
           pattern="111"
@@ -249,7 +300,8 @@ export default class FormSection extends Component {
           type="text"
           onChange={this.handleCVC}
           value={this.state.cvc}
-          label="Security code" />
+          label="Security code"
+        />
 
 
         <h3>Progress</h3>

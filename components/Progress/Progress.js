@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component, PropTypes } from 'react';
 
 import styles from './Progress.css';
 
@@ -37,8 +37,8 @@ export default class Progress extends Component {
       <div className={styles.root}>
         <div
           className={[styles.bar, this.getStyles(width)].join(' ')}
-          style={{width: `${width}%`}}
-          />
+          style={{ width: `${width}%` }}
+        />
       </div>
     );
   }
@@ -50,4 +50,3 @@ Progress.propTypes = {
   value: PropTypes.number.isRequired,
   hueChange: PropTypes.bool,
 };
-

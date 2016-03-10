@@ -1,0 +1,63 @@
+.fieldset {
+  border: inherit;
+  margin: inherit;
+  padding: inherit;
+  display: table;
+  border-collapse: collapse;
+  padding-bottom: 1rem;
+}
+
+.root {
+  display: table-row;
+  border-bottom: 1px solid var(--color-white-dark);
+}
+.root:last-child {
+  border: none;
+}
+
+.label {
+  display: table-cell;
+  text-align: right;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: 1%;
+  padding: 0.75rem;
+  color: var(--color-action);
+  cursor: text;
+}
+.input {
+  color: var(--color-black);
+  display: block;
+  border: none;
+  width: 100%;
+  padding: 0.75rem 0;
+  display: table-cell;
+  vertical-align: middle;
+}
+.input:focus {
+  border-color: var(--color-selection);
+  outline: 0;
+}
+
+.focus {
+  box-shadow: inset 0 0 0 1px var(--color-selection), 0 0 2px color(var(--color-selection) l(70%));
+}
+
+.message {
+  color: var(--color-error);
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+  opacity: 0;
+}
+
+.error {
+  box-shadow: inset 0 0 0 1px var(--color-error);
+  padding-bottom: 0.5em;
+}
+.error .label {
+  color: var(--color-error);
+}
+.error .message {
+  opacity: 1;
+}

@@ -27,7 +27,6 @@
 
 .label {
   transition: 200ms ease;
-  display: inline-block;
   position: relative;
   padding-left: 2rem;
   user-select: none;
